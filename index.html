@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Burgers</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <img src="imagenes/logo.png" alt="Logo" class="logo">
+            <h1>Code Burgers</h1>
+        </div>
+        <div class="header-right">
+            <img src="imagenes/carrito.png" alt="Carrito" class="cart-icon" id="cart-icon" onclick="toggleCart()">
+            <span id="cart-count" class="cart-count">0</span>
+
+            <div id="cart-menu" class="cart-menu">
+                <h2>Carrito</h2>
+                <ul id="cart-items"></ul>
+                <p>Total: $<span id="total">0.00</span></p>
+                <div id="order-form">
+                    <h3>Formulario de Pedido</h3>
+                    <form onsubmit="submitOrder(); return false;">
+                        <label for="name">Nombre:</label>
+                        <input type="text" id="name" name="name" required>
+                        <label for="address">Dirección:</label>
+                        <input type="text" id="address" name="address" required>
+                        <label for="payment">Método de Pago:</label>
+                        <select id="payment" name="payment" required>
+                            <option value="credit-card">Efectivo</option>
+                            <option value="paypal">Transferencia Bancaria</option>
+                        </select>
+                        <button type="submit">Realizar Pedido</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <!-- Sección de Burgers -->
+        <section id="menu">
+            <h2>BURGERS</h2>
+            <div class="burger-container">
+                <div class="burger" onclick="addToCart('Cheese Burger Doble', 7000)">
+                    <img src="imagenes/cheesedoble.png" alt="Cheese Burger Doble">
+                    <h3>Cheese Burger Doble</h3>
+                    <p class="description">Medallon x2 - Cheddar x4 + Papas Fritas</p>
+                    <p class="price">$7000</p>
+                </div>
+                <div class="burger" onclick="addToCart('Cheese Burger Triple', 8000)">
+                    <img src="imagenes/cheesetriple.png" alt="Cheese Burger Triple">
+                    <h3>Cheese Burger Triple</h3>
+                    <p class="description">Medallon x3 - Cheddar x6 + Papas Fritas</p>
+                    <p class="price">$8000</p>
+                </div>
+                <div class="burger" onclick="addToCart('Code Burger', 9500)">
+                    <img src="imagenes/codeburger.png" alt="Code Burger">
+                    <h3>Code Burger</h3>
+                    <p class="description">Medallon x2 - Cheddar x4 - Bacon - Cebolla Crispy - Aderezo Code + Papas Fritas</p>
+                    <p class="price">$9500</p>
+                </div>
+                <div class="burger" onclick="addToCart('Sweet Onion', 9500)">
+                    <img src="imagenes/sweetonion.png" alt="Sweet Onion">
+                    <h3>Sweet Onion</h3>
+                    <p class="description">Medallon x2 - Cheddar x2 - Bacon - Cebolla Caramelizada + Papas Fritas</p>
+                    <p class="price">$9500</p>
+                </div>
+                <div class="burger" onclick="addToCart('American Burger', 9000)">
+                    <img src="imagenes/americanburger.png" alt="American Burger">
+                    <h3>American Burger</h3>
+                    <p class="description">Medallon x2 - Cheddar x4 - Tomate - Lechuga - Cebolla Cruda - Thousand Island + Papas Fritas</p>
+                    <p class="price">$9000</p>
+                </div>
+                <div class="burger" onclick="addToCart('Veggie Burger', 9800)">
+                    <img src="imagenes/veggie.png" alt="Veggie Burger">
+                    <h3>Veggie Burger</h3>
+                    <p class="description">Medallon Vegano - Cheddar x2 - Pickles - Cebolla - Tomate - Lechuga + Papas Fritas</p>
+                    <p class="price">$9800</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Sección de Acompañamientos -->
+        <section id="acompanamientos">
+            <h2>ACOMPAÑAMIENTOS</h2>
+            <div class="acompanamiento-container">
+                <div class="acompanamiento" onclick="addToCart('Papas Fritas', 3500)">
+                    <img src="imagenes/papas.jpeg" alt="Papas Fritas">
+                    <h3>Papas Fritas</h3>
+                    <p class="description">Porción de Papas</p>
+                    <p class="price">$3500</p>
+                </div>
+                <div class="acompanamiento" onclick="addToCart('Aros de Cebolla', 3500)">
+                    <img src="imagenes/aros.jpeg" alt="Aros de Cebolla">
+                    <h3>Aros de Cebolla</h3>
+                    <p class="description">Aros de cebolla empanados</p>
+                    <p class="price">$3500</p>
+                </div>
+                <div class="acompanamiento" onclick="addToCart('Nuggets de Pollo X10', 4000)">
+                    <img src="imagenes/nuggets.jpeg" alt="Nuggets de Pollo X10">
+                    <h3>Nuggets de Pollo X10</h3>
+                    <p class="description">Nuggets crujientes</p>
+                    <p class="price">$4000</p>
+                </div>
+                <div class="acompanamiento" onclick="addToCart('Nuggets de Pollo X20', 5000)">
+                    <img src="imagenes/nuggets.jpeg" alt="Nuggets de Pollo X20">
+                    <h3>Nuggets de Pollo X20</h3>
+                    <p class="description">Nuggets crujientes</p>
+                    <p class="price">$5000</p>
+                </div>
+                <div class="acompanamiento" onclick="addToCart('Papas con Cheddar y Bacon', 5000)">
+                    <img src="imagenes/papaschedar.jpeg" alt="Papas con Cheddar y Bacon">
+                    <h3>Papas con Cheddar y Bacon</h3>
+                    <p class="description">Porción de Papas con Cheddar, Bacon y Verdeo</p>
+                    <p class="price">$5000</p>
+                </div>
+                <div class="acompanamiento" onclick="addToCart('Bastones de Mozzarella', 4500)">
+                    <img src="imagenes/bastones.jpeg" alt="Bastones de Mozzarella">
+                    <h3>Bastones de Mozzarella</h3>
+                    <p class="description">Bastones rellenos de Mozzarella</p>
+                    <p class="price">$4500</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Sección de Bebidas -->
+        <section id="bebidas">
+            <h2>BEBIDAS</h2>
+            <div class="bebida-container">
+                <div class="bebida" onclick="addToCart('Pepsi', 2100)">
+                    <img src="imagenes/pepsi.png" alt="Pepsi">
+                    <h3>Pepsi</h3>
+                    <p class="description">354 ml</p>
+                    <p class="price">$2100</p>
+                </div>
+                <div class="bebida" onclick="addToCart('Seven Up', 2100)">
+                    <img src="imagenes/7up.png" alt="Seven Up">
+                    <h3>Seven Up</h3>
+                    <p class="description">354 ml</p>
+                    <p class="price">$210</p>
+                </div>
+                <div class="bebida" onclick="addToCart('Mirinda', 2100)">
+                    <img src="imagenes/mirinda.jpg" alt="Mirinda">
+                    <h3>Mirinda</h3>
+                    <p class="description">354 ml</p>
+                    <p class="price">$2100</p>
+                </div>
+                <div class="bebida" onclick="addToCart('Agua Mineral', 2000)">
+                    <img src="imagenes/agua.jpeg" alt="Agua Mineral">
+                    <h3>Agua Mineral</h3>
+                    <p class="description">500 ml</p>
+                    <p class="price">$2000</p>
+                </div>
+                <div class="bebida" onclick="addToCart('Cerveza', 4000)">
+                    <img src="imagenes/cerveza.png" alt="Cerveza">
+                    <h3>Cerveza Patagonia Amber Lager</h3>
+                    <p class="description">410 ml</p>
+                    <p class="price">$3500</p>
+                </div>
+                <div class="bebida" onclick="addToCart('Cerveza Patagonia Bohemian', 3500)">
+                    <img src="imagenes/cerveza2.png" alt="Cerveza Patagonia Bohemian">
+                    <h3>Cerveza Patagonia Bohemian</h3>
+                    <p class="description">410 ml</p>
+                    <p class="price">$3500</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Code Burgers</p>
+    </footer>
+    <script src="scripts.js"></script>
+</body>
+</html>
